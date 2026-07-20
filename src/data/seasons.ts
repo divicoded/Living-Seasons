@@ -1,5 +1,9 @@
 import type { SeasonId } from '../store/useStore';
 
+// Vite injects the configured base (e.g. '/Living-Seasons/') so asset paths
+// resolve correctly on GitHub Pages project sites served from a subpath.
+const BASE = import.meta.env.BASE_URL;
+
 export interface SeasonTheme {
   id: SeasonId;
   name: string;
@@ -26,7 +30,7 @@ export const SEASONS: SeasonTheme[] = [
     id: 'vasant',
     name: 'Vasant',
     hindi: 'वसंत',
-    icon: '/assets/Icons/vasant.png',
+    icon: BASE + 'assets/Icons/vasant.png',
     seed: '#ff7eb6',
     accent: '#ffd166',
     mood: 'Blooming',
@@ -40,7 +44,7 @@ export const SEASONS: SeasonTheme[] = [
     id: 'grishma',
     name: 'Grishma',
     hindi: 'ग्रीष्म',
-    icon: '/assets/Icons/grishma.png',
+    icon: BASE + 'assets/Icons/grishma.png',
     seed: '#ff8a3d',
     accent: '#ffd23f',
     mood: 'Radiant',
@@ -54,7 +58,7 @@ export const SEASONS: SeasonTheme[] = [
     id: 'varsha',
     name: 'Varsha',
     hindi: 'वर्षा',
-    icon: '/assets/Icons/varsha.png',
+    icon: BASE + 'assets/Icons/varsha.png',
     seed: '#4cc9f0',
     accent: '#80ffea',
     mood: 'Monsoon',
@@ -68,7 +72,7 @@ export const SEASONS: SeasonTheme[] = [
     id: 'sharad',
     name: 'Sharad',
     hindi: 'शरद',
-    icon: '/assets/Icons/sharad.png',
+    icon: BASE + 'assets/Icons/sharad.png',
     seed: '#c77dff',
     accent: '#ffc6ff',
     mood: 'Crisp',
@@ -82,7 +86,7 @@ export const SEASONS: SeasonTheme[] = [
     id: 'hemant',
     name: 'Hemant',
     hindi: 'हेमंत',
-    icon: '/assets/Icons/hemant.png',
+    icon: BASE + 'assets/Icons/hemant.png',
     seed: '#90e0ef',
     accent: '#caf0f8',
     mood: 'Still',
@@ -96,7 +100,7 @@ export const SEASONS: SeasonTheme[] = [
     id: 'shishir',
     name: 'Shishir',
     hindi: 'शिशिर',
-    icon: '/assets/Icons/shishir.png',
+    icon: BASE + 'assets/Icons/shishir.png',
     seed: '#cfe8ff',
     accent: '#e0f7ff',
     mood: 'Frozen',

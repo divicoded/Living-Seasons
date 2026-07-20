@@ -6,14 +6,16 @@ import TextReveal from './TextReveal';
 import { useFeedback } from '../hooks/useFeedback';
 import './gifstrip.css';
 
+const BASE = import.meta.env.BASE_URL;
+
 const GIFS = [
-  { src: '/assets/GIFs/anim1.gif', caption: 'build' },
-  { src: '/assets/GIFs/anim2.gif', caption: 'ship' },
-  { src: '/assets/GIFs/anim3.gif', caption: 'learn' },
-  { src: '/assets/GIFs/anim4.gif', caption: 'play' },
-  { src: '/assets/GIFs/anim5.gif', caption: 'rest' },
-  { src: '/assets/GIFs/anim6.gif', caption: 'repeat' },
-  { src: '/assets/GIFs/anim7.gif', caption: 'dream' },
+  { src: BASE + 'assets/GIFs/anim1.gif', caption: 'build' },
+  { src: BASE + 'assets/GIFs/anim2.gif', caption: 'ship' },
+  { src: BASE + 'assets/GIFs/anim3.gif', caption: 'learn' },
+  { src: BASE + 'assets/GIFs/anim4.gif', caption: 'play' },
+  { src: BASE + 'assets/GIFs/anim5.gif', caption: 'rest' },
+  { src: BASE + 'assets/GIFs/anim6.gif', caption: 'repeat' },
+  { src: BASE + 'assets/GIFs/anim7.gif', caption: 'dream' },
 ];
 
 export default function GifStrip() {

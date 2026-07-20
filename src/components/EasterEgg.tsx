@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './easteregg.css';
 
+const BASE = import.meta.env.BASE_URL;
+
 /**
  * A small floating memento that links back to the original Yokoso 2.0
  * prototype (the plain HTML/CSS/JS build this app grew out of).
@@ -26,7 +28,7 @@ export default function EasterEgg() {
         {open && (
           <motion.a
             className="egg-pop"
-            href="/prototype/index.html"
+            href={BASE + 'prototype/index.html'}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
