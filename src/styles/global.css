@@ -1,0 +1,203 @@
+:root {
+  /* Material You seed - overwritten per season by JS */
+  --seed: #ff7eb6;
+  --accent: #ffd166;
+  --light: #ff9ec7;
+
+  /* Tonal surfaces (never pure black/white) */
+  --surface-0: color-mix(in srgb, var(--seed) 8%, #0c0a10);
+  --surface-1: color-mix(in srgb, var(--seed) 14%, #100d16);
+  --surface-2: color-mix(in srgb, var(--seed) 22%, #15111d);
+  --surface-3: color-mix(in srgb, var(--seed) 32%, #1b1626);
+  --surface-glass: color-mix(in srgb, var(--seed) 18%, rgba(20, 16, 28, 0.55));
+
+  --primary: color-mix(in srgb, var(--seed) 70%, white 10%);
+  --on-primary: #0c0a10;
+  --glow: color-mix(in srgb, var(--seed) 60%, transparent);
+  --text-1: #f4f0fb;
+  --text-2: color-mix(in srgb, var(--text-1) 66%, transparent);
+  --text-3: color-mix(in srgb, var(--text-1) 42%, transparent);
+
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 34px;
+  --radius-xl: 48px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --font-display: 'Sora', 'Geist', system-ui, sans-serif;
+  --font-body: 'Inter', 'General Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--text-1);
+  background: var(--surface-0);
+  /* Clip horizontal overflow WITHOUT turning the body into a scroll
+     container. Using overflow-x: hidden alone forces overflow-y to compute
+     to "auto", which makes the body scroll internally and breaks window
+     scrolling, Lenis, and position: sticky. The clip + position wrapper
+     keeps the document as the single scroller. */
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background 1.2s var(--ease-out);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+::selection {
+  background: var(--glow);
+  color: var(--on-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--seed) 40%, transparent);
+  border-radius: 99px;
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--text-1), var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--text-1) 10%, transparent);
+}
+
+/* Keep all interactive page content above the fixed decorative layers
+   (background mesh, 3D scene canvas, 2D particle canvas) so taps, swipes
+   and scrolls always reach the UI instead of being swallowed by a layer
+   that paints on top. The decorative layers use pointer-events: none, but
+   this guarantees the content stacking context sits above them. */
+.app-main {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Mobile tuning */
+.section-title {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-align: center;
+  margin-bottom: 4vh;
+  color: var(--text-1);
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 46px;
+  height: 3px;
+  margin: 16px auto 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--seed), var(--accent));
+  box-shadow: 0 0 18px var(--glow);
+  animation: title-underline 3s ease-in-out infinite;
+}
+
+@keyframes title-underline {
+  0%, 100% { width: 46px; opacity: 0.85; }
+  50% { width: 72px; opacity: 1; }
+}
+
+/* Reusable text reveal - words rise + fade in, staggered */
+.text-reveal {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.text-reveal > .word {
+  display: inline-block;
+  white-space: pre;
+  animation: word-rise 0.7s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 0.06s);
+}
+
+@keyframes word-rise {
+  from { transform: translateY(110%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-reveal > .word { animation: none; }
+}
+
+@media (max-width: 768px) {
+  .app-main > section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .carousel-section { padding: 9vh 0; }
+  .section-title { margin-bottom: 4vh; }
+  .profile-card { padding: 24px; }
+  .profile-tag { max-width: 140px; }
+}
+
+@media (max-width: 420px) {
+  .nav-tab { height: 56px; }
+  .tab-icon { width: 32px; height: 32px; }
+  .tab-icon img { width: 18px; height: 18px; }
+  .tab-title { font-size: 0.82rem; }
+  .tab-desc { font-size: 0.55rem; }
+  .profile-tag { max-width: 110px; }
+}

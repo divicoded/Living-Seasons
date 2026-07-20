@@ -1,0 +1,391 @@
+.profile-section {
+  position: relative;
+  z-index: 2;
+  padding: 14vh 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-card-wrap {
+  perspective: 1100px;
+  will-change: transform;
+}
+
+.profile-card {
+  position: relative;
+  width: min(440px, 92vw);
+  border-radius: 32px;
+  padding: 0 0 22px;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.4s var(--ease-out);
+  border: 1px solid color-mix(in srgb, var(--seed) 30%, transparent);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.profile-card:hover {
+  box-shadow: 0 40px 100px color-mix(in srgb, var(--seed) 35%, rgba(0, 0, 0, 0.5));
+}
+
+.profile-light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--light) 22%, transparent), transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Cover ─── */
+.profile-cover {
+  position: relative;
+  height: 150px;
+  border-radius: 32px 32px 0 0;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 160% at 12% 0%, color-mix(in srgb, var(--seed) 95%, #fff 0%), transparent 62%),
+    linear-gradient(120deg, var(--seed), var(--accent));
+}
+
+.profile-cover-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 120% at 90% 0%, rgba(255, 255, 255, 0.25), transparent 60%),
+    radial-gradient(40% 80% at 20% 100%, color-mix(in srgb, var(--light) 40%, transparent), transparent 60%);
+  animation: cover-breathe 7s ease-in-out infinite alternate;
+}
+
+@keyframes cover-breathe {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.08); }
+}
+
+.profile-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-primary);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 99px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Avatar + identity row ─── */
+.profile-avatar-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: -52px;
+  padding: 0 22px;
+}
+
+.profile-id {
+  flex: 1;
+  padding-bottom: 0.3rem;
+  min-width: 0;
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  /* Solid high-contrast fill (not the cover's --seed→--accent gradient) so the
+     letters stay legible where the name overlaps the cover and on the dark body. */
+  color: var(--text-1);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.profile-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-2);
+  letter-spacing: 0.03em;
+  margin-top: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--seed);
+  text-decoration: none;
+  margin-top: 0.3rem;
+  transition: color 0.25s var(--ease-out), gap 0.25s var(--ease-out);
+}
+
+.profile-github:hover {
+  color: var(--accent);
+  gap: 0.45rem;
+}
+
+.profile-avatar {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.profile-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--seed), var(--accent), var(--seed), var(--light), var(--seed));
+  animation: ring-spin 8s linear infinite;
+  box-shadow: 0 0 36px color-mix(in srgb, var(--seed) 40%, transparent);
+}
+
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+.profile-ring-inner {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--surface-1);
+}
+
+.profile-photo {
+  position: absolute;
+  inset: 7px;
+  width: calc(100% - 14px);
+  height: calc(100% - 14px);
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.profile-online {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4ade80;
+  border: 3px solid var(--surface-1);
+  z-index: 3;
+  animation: online-pulse 2s ease-in-out infinite;
+}
+
+@keyframes online-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
+  50% { box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
+}
+
+/* ─── Status pill ─── */
+.profile-status {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1rem 22px 0.6rem;
+  padding: 0.8rem 1rem;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--text-1) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text-1) 6%, transparent);
+  transition: background 0.3s var(--ease-out);
+}
+
+.profile-status:hover {
+  background: color-mix(in srgb, var(--text-1) 7%, transparent);
+}
+
+.profile-status-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  animation: status-float 3s ease-in-out infinite alternate;
+}
+
+@keyframes status-float {
+  0% { transform: scale(1) rotate(-4deg); }
+  100% { transform: scale(1.08) rotate(4deg); }
+}
+
+.profile-status-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-status-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.profile-status-main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.profile-status-season {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--seed);
+}
+
+.profile-status-mood {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--seed) 14%, transparent);
+  padding: 0.1rem 0.6rem;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--seed) 16%, transparent);
+}
+
+.profile-status-desc {
+  display: block;
+  font-size: 0.62rem;
+  color: var(--text-3);
+  margin-top: 0.05rem;
+}
+
+/* ─── Chips ─── */
+.profile-chips {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.6rem 22px;
+}
+
+.profile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--text-1) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text-1) 4%, transparent);
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--text-2);
+  transition: all 0.25s var(--ease-out);
+}
+
+.profile-chip:hover {
+  background: color-mix(in srgb, var(--text-1) 8%, transparent);
+  transform: translateY(-1px);
+  color: var(--text-1);
+}
+
+.profile-chip-icon {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.profile-chip--hl {
+  background: color-mix(in srgb, var(--seed) 14%, transparent);
+  border-color: color-mix(in srgb, var(--seed) 18%, transparent);
+  color: var(--seed);
+}
+
+.profile-chip--hl:hover {
+  background: color-mix(in srgb, var(--seed) 22%, transparent);
+}
+
+/* ─── Quote ─── */
+.profile-quote {
+  position: relative;
+  z-index: 2;
+  margin: 0.6rem 22px 0;
+  padding: 0.8rem 0 0.2rem;
+}
+
+.profile-quote-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--text-1) 8%, transparent), transparent);
+  margin-bottom: 0.7rem;
+}
+
+.profile-quote-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.3rem;
+}
+
+.profile-quote-text {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+@media (max-width: 420px) {
+  .profile-cover { height: 120px; }
+  .profile-avatar-row {
+    margin-top: -42px;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+  .profile-name { font-size: 1.9rem; }
+  .profile-avatar { width: 84px; height: 84px; }
+  .profile-status-main { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+}
+
+/* ─── Long-press flip easter egg ─── */
+/* The avatar flips in 3D; backface is hidden and the photo keeps its native
+   resolution (no upscaling) so quality is preserved at every scale. */
+.profile-avatar {
+  transform-style: preserve-3d;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.profile-avatar .profile-photo {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  image-rendering: auto;
+  filter: none;
+  will-change: transform;
+}
+
+.profile-avatar .profile-ring,
+.profile-avatar .profile-ring-inner,
+.profile-avatar .profile-online {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

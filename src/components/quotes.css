@@ -1,0 +1,272 @@
+.quotes-section {
+  position: relative;
+  z-index: 2;
+  padding: 14vh 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quotes-grid {
+  position: relative;
+  width: min(540px, 88vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* progress dots */
+.quote-dots {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.quote-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--text-1) 22%, transparent);
+  transition: width 0.4s var(--ease-spring), background 0.4s var(--ease-out);
+}
+
+.quote-dot.active {
+  width: 22px;
+  background: linear-gradient(90deg, var(--seed), var(--accent));
+  box-shadow: 0 0 12px var(--glow);
+}
+
+.quote-card-float {
+  animation: card-float 6s ease-in-out infinite;
+}
+
+.quote-card {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  border-radius: var(--radius-lg);
+  padding: 40px 38px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  cursor: grab;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--seed) 32%, transparent);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+@keyframes card-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.quote-card:active {
+  cursor: grabbing;
+}
+
+.quote-card:hover {
+  box-shadow: 0 34px 90px color-mix(in srgb, var(--seed) 45%, rgba(0, 0, 0, 0.5));
+  border-color: color-mix(in srgb, var(--seed) 55%, transparent);
+}
+
+/* soft animated glow that breathes with the season color */
+.quote-glow {
+  position: absolute;
+  inset: -40%;
+  z-index: 0;
+  background: radial-gradient(
+    40% 40% at 30% 20%,
+    color-mix(in srgb, var(--seed) 40%, transparent),
+    transparent 70%
+  );
+  opacity: 0.6;
+  animation: glow-breathe 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.08); }
+}
+
+.quote-grad {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.quote-grad-like {
+  background: linear-gradient(120deg, transparent 40%, color-mix(in srgb, var(--seed) 85%, #fff 10%) 100%);
+}
+
+.quote-grad-nope {
+  background: linear-gradient(240deg, transparent 40%, color-mix(in srgb, var(--accent) 85%, #fff 10%) 100%);
+}
+
+.quote-mark,
+.quote-body,
+.quote-season-tag {
+  position: relative;
+  z-index: 2;
+}
+
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 0.3;
+  color: var(--primary);
+  opacity: 0.7;
+  animation: mark-pop 0.6s var(--ease-spring) both;
+}
+
+@keyframes mark-pop {
+  from { transform: scale(0.4) rotate(-12deg); opacity: 0; }
+  to { transform: scale(1) rotate(0); opacity: 0.7; }
+}
+
+.quote-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quote-text {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+.quote-author {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+.quote-season-tag {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 5px 10px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--text-1) 12%, transparent);
+  background: color-mix(in srgb, var(--text-1) 4%, transparent);
+}
+
+/* controls */
+.quote-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.quote-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--text-1);
+  background: var(--surface-glass);
+  border: 1px solid color-mix(in srgb, var(--text-1) 12%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.25s var(--ease-spring), background 0.25s var(--ease-out);
+}
+
+.quote-arrow:hover {
+  transform: scale(1.1);
+  background: color-mix(in srgb, var(--seed) 22%, var(--surface-glass));
+}
+
+.quote-arrow:active {
+  transform: scale(0.92);
+}
+
+.quote-shuffle {
+  padding: 10px 22px;
+  border-radius: 99px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--on-primary);
+  background: linear-gradient(135deg, var(--seed), var(--accent));
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--seed) 45%, rgba(0, 0, 0, 0.5));
+  transition: transform 0.25s var(--ease-spring), filter 0.25s var(--ease-out);
+}
+
+.quote-shuffle:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.quote-shuffle:active {
+  transform: scale(0.95);
+}
+
+.quotes-hint {
+  margin-top: 5vh;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  animation: hint-shimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes hint-shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .quote-card {
+    padding: 32px 26px;
+    min-height: 230px;
+  }
+  .quote-mark { font-size: 3.2rem; }
+}
+
+.quote-card-stage {
+  position: relative;
+  width: 100%;
+}
+
+.quote-card-behind {
+  position: absolute;
+  inset: 0;
+  transform: scale(0.92) translateY(14px);
+  opacity: 0.25;
+  filter: blur(3px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.quote-card-float {
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,81 @@
+.season-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.clock-svg {
+  width: clamp(190px, 42vw, 280px);
+  height: auto;
+  filter: drop-shadow(0 0 30px var(--glow));
+  overflow: visible;
+  animation: clock-breathe 5s ease-in-out infinite;
+}
+
+@keyframes clock-breathe {
+  0%, 100% { filter: drop-shadow(0 0 30px var(--glow)); }
+  50% { filter: drop-shadow(0 0 48px var(--glow)); }
+}
+
+.clock-progress {
+  transition: stroke-dasharray 0.6s linear;
+}
+
+.clock-second {
+  transform-origin: 100px 100px;
+  transition: transform 0.2s cubic-bezier(0.4, 2.3, 0.6, 1);
+}
+
+/* season-specific ring motion */
+.clock-vasant .ring-petals { animation: spinSlow 26s linear infinite; transform-origin: 100px 100px; }
+.clock-grishma .ring-sun { animation: spinSlow 40s linear infinite; transform-origin: 100px 100px; }
+.clock-varsha .ring-rain { animation: spinSlow 18s linear infinite; transform-origin: 100px 100px; }
+.clock-sharad .ring-leaves { animation: spinSlow 30s linear infinite; transform-origin: 100px 100px; }
+.clock-hemant .ring-mist { animation: pulseMist 5s ease-in-out infinite; }
+.clock-shishir .ring-snow { animation: spinSlow 50s linear infinite; transform-origin: 100px 100px; }
+
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+@keyframes pulseMist { 50% { opacity: 0.35; } }
+
+.clock-readout {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-display);
+}
+
+.clock-digits {
+  font-weight: 800;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.clock-digits i {
+  color: var(--primary);
+  font-style: normal;
+  animation: blink 1s steps(1) infinite;
+}
+
+.clock-ampm {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.clock-sec {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+.clock-season {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}

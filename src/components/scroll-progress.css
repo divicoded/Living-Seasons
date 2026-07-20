@@ -1,0 +1,30 @@
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 80;
+  pointer-events: none;
+}
+
+.scroll-progress-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--seed), var(--accent));
+  box-shadow: 0 0 12px var(--glow);
+  transition: transform 0.1s linear;
+}
+
+.scroll-progress-dot {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--glow);
+  transition: left 0.1s linear;
+}

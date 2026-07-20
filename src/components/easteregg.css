@@ -1,0 +1,73 @@
+.egg {
+  position: fixed;
+  left: max(18px, env(safe-area-inset-left));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.egg-fab {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text-1) 14%, transparent);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.egg-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--seed), var(--accent));
+  box-shadow: 0 0 12px var(--glow);
+  animation: egg-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes egg-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+.egg-pop {
+  width: 230px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  background: color-mix(in srgb, var(--surface-1) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--seed) 30%, transparent);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5);
+  color: var(--text-1);
+}
+
+.egg-pop-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.egg-pop-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.egg-pop-sub {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--text-3);
+  line-height: 1.4;
+}

@@ -1,0 +1,210 @@
+.carousel-section {
+  position: relative;
+  z-index: 2;
+  padding: 12vh 0;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  text-align: center;
+  margin-bottom: 6vh;
+  letter-spacing: -0.01em;
+}
+
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  padding: 12px;
+  width: min(92vw, 880px);
+  border-radius: 999px;
+  background: var(--surface-glass);
+  border: 1px solid color-mix(in srgb, var(--text-1) 12%, transparent);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  touch-action: pan-y;
+}
+
+.nav-tab {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 64px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0;
+  transition: flex 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.45s var(--ease-out), color 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out);
+}
+
+.nav-tab:hover {
+  background: color-mix(in srgb, var(--seed) 14%, transparent);
+  color: var(--text-1);
+}
+
+.nav-tab.active {
+  flex: 3 1 0;
+  color: #fff;
+  background:
+    radial-gradient(120% 160% at 20% 10%, color-mix(in srgb, var(--seed) 85%, #fff 0%), transparent 70%),
+    linear-gradient(120deg, var(--seed), var(--accent));
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--seed) 55%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  animation: tab-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes tab-glow {
+  0%, 100% { box-shadow: 0 10px 30px color-mix(in srgb, var(--seed) 45%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+  50% { box-shadow: 0 14px 42px color-mix(in srgb, var(--seed) 70%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.35); }
+}
+
+.tab-icon {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  transition: transform 0.45s var(--ease-spring), background 0.45s var(--ease-out);
+}
+
+.nav-tab.active .tab-icon {
+  background: rgba(255, 255, 255, 0.22);
+  transform: scale(1.05);
+  animation: tab-icon-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes tab-icon-pulse {
+  0%, 100% { transform: scale(1.05); }
+  50% { transform: scale(1.14); }
+}
+
+.tab-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.4s var(--ease-out) 0.12s, transform 0.45s var(--ease-spring) 0.12s;
+  white-space: nowrap;
+}
+
+.nav-tab.active .tab-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tab-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.tab-desc {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.carousel-hint {
+  text-align: center;
+  margin-top: 4vh;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  animation: hint-shimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes hint-shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 560px) {
+  .carousel-nav {
+    gap: 6px;
+    padding: 9px;
+    width: min(96vw, 560px);
+  }
+  .nav-tab {
+    height: 56px;
+    gap: 0;
+  }
+  .nav-tab.active {
+    flex: 2.4 1 0;
+    gap: 8px;
+  }
+  .tab-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .tab-icon img {
+    width: 24px;
+    height: 24px;
+  }
+  /* keep inactive tabs as compact icon pills; reveal text only on the active one */
+  .nav-tab:not(.active) .tab-content {
+    display: none;
+  }
+  .tab-title {
+    font-size: 0.9rem;
+  }
+  .tab-desc {
+    font-size: 0.56rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .carousel-nav {
+    gap: 5px;
+    padding: 8px;
+  }
+  .nav-tab {
+    height: 52px;
+  }
+  .nav-tab.active {
+    flex: 2.2 1 0;
+    gap: 6px;
+  }
+  .tab-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .tab-icon img {
+    width: 22px;
+    height: 22px;
+  }
+  .tab-title {
+    font-size: 0.82rem;
+  }
+}

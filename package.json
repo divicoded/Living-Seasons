@@ -1,0 +1,55 @@
+{
+  "name": "living-seasons",
+  "private": true,
+  "version": "4.0.0",
+  "type": "module",
+  "description": "Living Seasons - a premium Material You 3 seasonal experience built with React 19, Vite, TypeScript, R3F and Framer Motion.",
+  "author": "DIV (divicoded)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/divicoded/living-seasons.git"
+  },
+  "homepage": "https://github.com/divicoded/living-seasons#readme",
+  "bugs": {
+    "url": "https://github.com/divicoded/living-seasons/issues"
+  },
+  "keywords": [
+    "react",
+    "react-19",
+    "vite",
+    "typescript",
+    "material-you",
+    "threejs",
+    "react-three-fiber",
+    "framer-motion",
+    "seasonal",
+    "dynamic-theming"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mui/joy": "^5.0.0-beta.51",
+    "@react-three/drei": "^10.0.0",
+    "@react-three/fiber": "^9.0.0",
+    "@react-three/postprocessing": "^3.0.0",
+    "framer-motion": "^12.42.2",
+    "postprocessing": "^6.36.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.3.0",
+    "three": "^0.169.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.169.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.21"
+  }
+}

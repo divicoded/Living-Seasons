@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <title>Yokoso 2.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="hemant">
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader">
+      <svg id="pegtopone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <g><path d="M63,37c-6.7-4-4-27-13-27s-6.3,23-13,27-27,4-27,13,20.3,9,27,13,4,27,13,27,6.3-23,13-27,27-4,27-13-20.3-9-27-13Z" fill="url(#loaderGradient)"></path></g>
+      </svg>
+      <svg id="pegtoptwo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="loaderGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <g><path d="M63,37c-6.7-4-4-27-13-27s-6.3,23-13,27-27,4-27,13,20.3,9,27,13,4,27,13,27,6.3-23,13-27,27-4,27-13-20.3-9-27-13Z" fill="url(#loaderGradient2)"></path></g>
+      </svg>
+      <svg id="pegtopthree" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="loaderGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <g><path d="M63,37c-6.7-4-4-27-13-27s-6.3,23-13,27-27,4-27,13,20.3,9,27,13,4,27,13,27,6.3-23,13-27,27-4,27-13-20.3-9-27-13Z" fill="url(#loaderGradient3)"></path></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="bg-ambient"></div>
+  <div class="canvasWrap"><canvas id="particles"></canvas></div>
+
+  <div class="container">
+    <header class="header-section">
+      <div class="greeting-content">
+        <div class="status-badge">
+          <div class="status-indicator online" id="statusIndicator"></div>
+          <span id="statusText">ONLINE</span>
+        </div>
+        <h1 class="greeting-text" id="greeting">Good Night</h1>
+        <p class="greeting-subtitle" id="greetingSubtitle">Time to rest and recharge for tomorrow</p>
+      </div>
+    </header>
+
+    <div class="sticky-menu-container">
+      <button class="fab" id="fabSettings" aria-label="Settings">
+        <img src="GIFs/gear.gif" alt="Settings">
+      </button>
+      <div class="menu glass-panel" id="fabMenu" role="dialog" aria-modal="true" aria-label="Settings Menu">
+        <h3>Settings</h3>
+        <div class="row">
+          <label for="nameInput">Your name</label>
+          <input id="nameInput" type="text" placeholder="Div"/>
+        </div>
+        <div class="row">
+          <label for="particlesToggle">Particles</label>
+          <label class="switch">
+            <input id="particlesToggle" type="checkbox" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="row">
+          <label for="soundToggle">Clock sound</label>
+          <label class="switch">
+            <input id="soundToggle" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="row">
+          <label for="hapticToggle">Haptics</label>
+          <label class="switch">
+            <input id="hapticToggle" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="row">
+          <label for="statusToggle">Status</label>
+          <label class="switch">
+            <input id="statusToggle" type="checkbox" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <small>All preferences are stored locally in your browser.</small>
+      </div>
+    </div>
+
+    <!-- Carousel Navigation Bar -->
+    <div class="carousel-nav">
+        <div class="nav-tab" data-tab="vasant">
+            <div class="tab-icon">
+                <img src="Icons/vasant.png" alt="Vasant">
+            </div>
+            <div class="tab-content">
+                <div class="tab-title">Vasant</div>
+                <div class="tab-description">Spring Season</div>
+            </div>
+        </div>
+        
+        <div class="nav-tab" data-tab="grishma">
+            <div class="tab-icon">
+                <img src="Icons/grishma.png" alt="Grishma">
+            </div>
+            <div class="tab-content">
+                <div class="tab-title">Grishma</div>
+                <div class="tab-description">Summer Season</div>
+            </div>
+        </div>
+        
+        <div class="nav-tab" data-tab="varsha">
+            <div class="tab-icon">
+                <img src="Icons/varsha.png" alt="Varsha">
+            </div>
+            <div class="tab-content">
+                <div class="tab-title">Varsha</div>
+                <div class="tab-description">Monsoon Season</div>
+            </div>
+        </div>
+        
+        <div class="nav-tab" data-tab="sharad">
+            <div class="tab-icon">
+                <img src="Icons/sharad.png" alt="Sharad">
+            </div>
+            <div class="tab-content">
+                <div class="tab-title">Sharad</div>
+                <div class="tab-description">Autumn Season</div>
+            </div>
+        </div>
+        
+        <div class="nav-tab" data-tab="hemant">
+            <div class="tab-icon">
+                <img src="Icons/hemant.png" alt="Hemant">
+            </div>
+            <div class="tab-content">
+                <div class="tab-title">Hemant</div>
+                <div class="tab-description">Pre-Winter Season</div>
+            </div>
+        </div>
+        
+        <div class="nav-tab" data-tab="shishir">
+            <div class="tab-icon">
+                <img src="Icons/shishir.png" alt="Shishir">
+            </div>
+            <div class="tab-content">
+                <div class="tab-title">Shishir</div>
+                <div class="tab-description">Winter Season</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Season Display -->
+    <div class="mobile-season-display">
+        <div class="season-display" id="seasonName">Hemant</div>
+    </div>
+
+    <!-- Mobile Clock Section -->
+    <section class="mobile-clock-section">
+      <div class="mobile-clock-container" id="mobileClockContainer">
+        <div class="mobile-analog-clock-wrapper">
+          <div class="mobile-analog-clock">
+            <div class="mobile-clock-face">
+              <div class="mobile-clock-markers" id="mobileClockMarkers"></div>
+              <div class="mobile-hour-hand" id="mobileHourHand"></div>
+              <div class="mobile-minute-hand" id="mobileMinuteHand"></div>
+              <div class="mobile-second-hand" id="mobileSecondHand"></div>
+              <div class="mobile-clock-center"></div>
+            </div>
+          </div>
+          <div class="mobile-digital-clock">
+            <div class="mobile-digital-time" id="mobileDigitalTime">00:00:00</div>
+            <div class="mobile-digital-date" id="mobileDigitalDate">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="main-content">
+      <div class="card time-card glass-panel glow-effect">
+        <div class="time-display" id="time">00:30:41</div>
+        <div class="date-display" id="date">Friday, August 15, 2025</div>
+        <div class="season-display" id="desktopSeasonName">Hemant</div>
+      </div>
+
+      <div class="card clock-card glass-panel glow-effect">
+        <div class="analog-clock" id="analogClock">
+          <div class="clock-face">
+            <div class="clock-markers" id="clockMarkers"></div>
+            <div class="hour-hand" id="hourHand"></div>
+            <div class="minute-hand" id="minuteHand"></div>
+            <div class="second-hand" id="secondHand"></div>
+            <div class="clock-center"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <section class="card quotes-section glass-panel">
+      <div class="quotes-header">
+        <div class="quotes-icon">💭</div>
+        <div>
+          <div class="quotes-title">Mindful Moments...</div>
+          <div class="quotes-subtitle">Quotes so real they don't need cookies to follow you around.</div>
+        </div>
+      </div>
+      <div class="quotes-container" id="quotesContainer">
+        <div class="quote-item"><div class="quote-image" style="background-image: url(&quot;GIFs/anim1.gif&quot;);"></div><div class="quote-card">Status: ALIVE !!</div></div>
+        <div class="quote-item"><div class="quote-image" style="background-image: url(&quot;GIFs/anim2.gif&quot;);"></div><div class="quote-card">Be the plot twist your life didn't see coming.</div></div>
+        <div class="quote-item"><div class="quote-image" style="background-image: url(&quot;GIFs/anim3.gif&quot;);"></div><div class="quote-card">One small positive thought can change your whole day.</div></div>
+        <div class="quote-item"><div class="quote-image" style="background-image: url(&quot;GIFs/anim4.gif&quot;);"></div><div class="quote-card">Progress, not perfection.</div></div>
+        <div class="quote-item"><div class="quote-image" style="background-image: url(&quot;GIFs/anim5.gif&quot;);"></div><div class="quote-card">You've survived 100% of your good days so far.</div></div>
+        <div class="quote-item"><div class="quote-image" style="background-image: url(&quot;GIFs/anim6.gif&quot;);"></div><div class="quote-card">You don't need more time, you need less excuses</div></div>
+        <div class="quote-item"><div class="quote-image" style="background-image: url(&quot;GIFs/anim7.gif&quot;);"></div><div class="quote-card">Kindness is free....sprinkle it everywhere. Have a nice day</div></div>
+      </div>
+    </section>
+
+    <!-- CREATIONS SECTION -->
+    <section class="card creations-section glass-panel">
+      <div class="creations-header">
+        <div class="creations-icon">🎨</div>
+        <div>
+          <div class="creations-title">My Creations</div>
+          <div class="creations-subtitle">Stuff I did while *not* studying... shockingly, some of it turned out useful.</div>
+        </div>
+      </div>
+      <div class="creations-container">
+        <!-- Profile Card -->
+        <div class="profile-card blue-theme" id="profileCard">
+          <div class="profile-info">
+            <h2>Div</h2>
+            <p>Touched code once after too much anime... now pretending to be a frontend dev powered by Wi-Fi and an i3 5th-gen relic with 4GB RAM.</p>
+            <a href="https://github.com/divicoded" class="profile-button" target="_blank">
+              <span>View GitHub</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <div class="profile-img">
+            <img src="https://avatars.githubusercontent.com/u/217160893?v=4" alt="GitHub Profile">
+          </div>
+          <div class="profile-float-shape profile-float-shape--a" aria-hidden="true"></div>
+          <div class="profile-float-shape profile-float-shape--b" aria-hidden="true"></div>
+        </div>
+        
+        <!-- Project Cards -->
+        <div class="projects">
+          <!-- MazeTilt Card -->
+          <div class="card maze" data-tilt id="mazeCard">
+            <div class="float-shape"></div>
+            <div class="image-holder">
+              <img data-src="Icons/mazetilt.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Crect width='150' height='150' fill='%23000' opacity='0.1'/%3E%3C/svg%3E" alt="MazeTilt preview" class="lazy-image">
+            </div>
+            <div class="card-content">
+              <span class="title">MazeTilt</span>
+              <p class="desc">A digital playground where gravity isn't a force... it's a companion. Here, a ball rolls through mazes not by touch, but by the tilt of your device, guided by the unseen hand of physics. It's a dance of motion and code, where every tilt is a step, and every turn a new path.</p>
+              <a href="https://divicoded.github.io/MazeTilt/" target="_blank" class="button">🎮 Explore MazeTilt</a>
+            </div>
+          </div>
+
+          <!-- Poems Card -->
+          <div class="card poem" data-tilt id="poemCard">
+            <div class="float-shape"></div>
+            <div class="image-holder">
+              <img data-src="Icons/poems.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Crect width='150' height='150' fill='%23000' opacity='0.1'/%3E%3C/svg%3E" alt="Poems preview" class="lazy-image">
+            </div>
+            <div class="card-content">
+              <span class="title">Ink Echo</span>
+              <p class="desc">A little page where I write poems and let CSS & JS hold the pages together... words turned into code, verses wrapped in responsive layouts, and a digital notebook that feels part sketchbook, part poetry collection. A weaving of creativity through both language and design.</p>
+              <a href="https://divicoded.github.io/Poems/" target="_blank" class="button">📜 Read Ink Echo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <span>Crafted with</span>
+        <span class="heart">♥</span>
+        <span>by Div</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
